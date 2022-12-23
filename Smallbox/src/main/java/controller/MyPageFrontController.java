@@ -29,7 +29,7 @@ public class MyPageFrontController extends HttpServlet {
 		ActionForward forward = null; 
 		
 		// ----------------------------------------------------------------------
-		if(command.equals("/MyPageForm.my")) { // 마이페이지 메인으로 이동
+		if(command.equals("/MyPageMain.my")) { // 마이페이지 메인으로 이동
 			forward = new ActionForward();
 			forward.setPath("mypage/mypage_main.jsp");
 			forward.setRedirect(false);

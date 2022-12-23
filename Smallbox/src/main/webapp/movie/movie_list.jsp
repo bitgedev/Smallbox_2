@@ -16,16 +16,13 @@
 	<header>
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 	</header>
-	<!-- header -->
-	
-	<!-- 본문 -->
-	<form action="">
 	<h1>전체 영화</h1>
 		<h2>현재 상영작</h2>
 <!-- 		임시로 디비에 저장된 모든 영화를 현재 상영작으로 취급합니다.  -->
 		
 		<input type="text" name="keyword" class="input_box">
 		<input type="submit" value="Search" class="btn">
+		
 		<hr>
 		<table border="1">
 			<tr>
@@ -49,12 +46,8 @@
 					<td><input type="button" value="찜" onclick="location.href='MovieLikePro.mv?member_id=${sId }&movie_idx=${movie.movie_idx}'"></td>
 				</tr>
 			</c:forEach>
+				
+
 		</table>
-		</form>
-		
-	<!-- bottom -->
-	<header>
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	</header>
 </body>
 </html>

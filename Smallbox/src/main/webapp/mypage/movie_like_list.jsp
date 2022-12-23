@@ -11,10 +11,6 @@
 	<header>
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 	</header>
-	<!-- header -->
-	
-	<!-- 본문 -->
-	<form action="">
 	<h1>찜목록</h1>
 	
 	<table border="1">
@@ -30,12 +26,8 @@
 			<td><img src="<%=request.getContextPath() %>/upload/${movie.movie_real_picture}" width="150" height="150"></td>
 		</tr>	
 		</c:forEach>
+			
+
 	</table>
-	</form>
-	
-	<!-- bottom -->
-	<header>
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	</header>
 </body>
 </html>
