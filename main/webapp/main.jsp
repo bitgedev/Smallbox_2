@@ -92,7 +92,7 @@
     
     <section id="movie">
         <div class="container">
-            <div class="row">
+            <div class="row">dawdas
                 <h2 class="ir_so">영화 예매</h2>
                 <div class="movie">
                     <div class="movie_title">
