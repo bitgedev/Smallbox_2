@@ -8,9 +8,7 @@
 <title>영화 목록</title>
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/top.jsp"></jsp:include>
-	</header>
+	<form>
 	<h1>영화 목록</h1>
 		<table border="1">
 			<tr>
@@ -50,7 +48,7 @@
 		</table>
 		
 		<section id="buttonArea"> <!-- 버튼 영역 -->
-			<form action="MovieList.ad" method="get"> <!-- 검색 버튼 -->
+			<form action="AdminMovieList.ad" method="get"> <!-- 검색 버튼 -->
 				<input type="text" name="keyword" class="input_box">
 				<input type="submit" value="Search" class="btn">
 			</form>
@@ -69,6 +67,6 @@
 		<!-- 현재 페이지 번호(pageNum)가 총 페이지 수보다 작을 때만 [다음] 링크 동작 -->
 		
 		</section>
-
+	</form>
 </body>
 </html>

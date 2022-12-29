@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutProAction;
+import action.MemberModifyFormAction;
+import action.MemberModifyProAction;
 import action.Action;
 import vo.ActionForward;
 
@@ -60,7 +62,15 @@ import vo.ActionForward;
 				forward.setPath("member/find_id_form.jsp");
 				forward.setRedirect(false); // 생략 가능
 				
-			} 
+			} else if(command.equals("/MemberModifyForm.sm")) { //회원 정보 수정 폼
+				action = new MemberModifyFormAction();
+				forward = action.execute(request, response);
+				
+			} else if (command.equals("/MemberModifyPro.sm")) { // 회원정보 수정 작업
+				action = new MemberModifyProAction();
+				forward = action.execute(request, response);
+				
+			}
 			
 			if(forward != null) {
 				// 2. Actionforward 객체에 저장된 포워딩 방식 판별

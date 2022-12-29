@@ -19,29 +19,39 @@
 		<!-- 서버에 실제 업로드 된 파일 = movie_real_picture -->
 	
 		<table border="1">
-			<tr><td>영화명</td><td><input type="text" name="movie_title" value="${movie.movie_title }" required="required"></td></tr>
+			<tr><td>영화명</td>
+				<td><label><input type="text" name="movie_title" value="${movie.movie_title }" required="required"></label>
+				</td></tr>
 			<tr>
 				<td>등급</td>
 				<td>
-					<input type="text" name="movie_grade" value="${movie.movie_grade }" required="required">
+					<label><input type="radio" name="movie_grade" value="전체관람가" checked="checked">전체관람가</label>
+					<label><input type="radio" name="movie_grade" value="12세이상관람가">12세이상관람가</label>
+					<label><input type="radio" name="movie_grade" value="15세이상관람가">15세이상관람가</label>
+					<label><input type="radio" name="movie_grade" value="청소년관람불가">청소년관람불가</label>
 				</td>
 			</tr>
 			<tr>
 				<td>장르</td>
 				<td>
-					<input type="text" name="movie_genre" value="${movie.movie_genre }" required="required"> 
+					<label><input type="checkbox" name="movie_genre" value="코미디">코미디</label>
+					<label><input type="checkbox" name="movie_genre" value="로맨스">로맨스</label>
+					<label><input type="checkbox" name="movie_genre" value="액션">액션</label>
+					<label><input type="checkbox" name="movie_genre" value="애니메이션">애니메이션</label>
+					<label><input type="checkbox" name="movie_genre" value="공포">공포</label>
+					<label><input type="checkbox" name="movie_genre" value="SF">SF</label>
 				</td>
 			</tr>
 			<tr>
 				<td>개봉일</td>
 				<td>
-					<input type="date" name="movie_open_date" value="${movie.movie_open_date }" required="required"> 
+					<label><input type="date" name="movie_open_date" value="${movie.movie_open_date }" required="required"></label> 
 				</td>
 			</tr>
 			<tr>
 				<td>상영시간</td>
 				<td>
-					<input type="number" name="movie_runtime" value="${movie.movie_runtime }" required="required">
+					<label><input type="number" name="movie_runtime" value="${movie.movie_runtime }" required="required"></label>
 				</td>
 			</tr>
 			<tr>
@@ -55,12 +65,12 @@
 			<tr>
 				<td>영화 포스터</td>
 				<td>
-					<input type="file" name="movie_picture">
+					<label><input type="file" name="movie_picture"></label>
 				</td>
 			</tr>
 			<tr>
 				<td>누적 관람객 수</td>
-				<td><input type="number" name="movie_viewer" value="${movie.movie_viewer }"></td>
+				<td><label><input type="number" name="movie_viewer" value="${movie.movie_viewer }"></label></td>
 			</tr>
 			<tr>
 				<td colspan="2">

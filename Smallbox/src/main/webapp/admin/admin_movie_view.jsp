@@ -17,9 +17,6 @@ function confirm_delete() {
 <title>영화 결과</title>
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/top.jsp"></jsp:include>
-	</header>
 	<h1>영화 출력</h1>
 		<table border="1">
 			<tr><td>영화명</td><td>${movie.movie_title }</td></tr>

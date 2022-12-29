@@ -11,6 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
 	<header>
@@ -43,11 +45,15 @@
 					<td><a href="AdminMovieDetailPro.ad?movie_idx=${movie.movie_idx}&pageNum=${pageNum }"><img src="<%=request.getContextPath() %>/upload/${movie.movie_real_picture}" width="200" height="200"></a></td>
 					<td>${movie.movie_open_date }</td>
 					<!-- 찜 버튼을 누르면 MovieLikePro(찜 작업 수행) 매핑 -->
-					<td><input type="button" value="찜" onclick="location.href='MovieLikePro.mv?member_id=${sId }&movie_idx=${movie.movie_idx}'"></td>
+					<td> 
+<%-- 					<input type="button" value="찜" onclick="location.href='MovieLikePro.mv?member_id=${sessionScope.sId }&movie_idx=${movie.movie_idx}'"> --%>
+					<a href="MovieLikePro.mv?member_id=${sessionScope.sId }&movie_idx=${movie.movie_idx}"><i class='far fa-heart' style='font-size:24px;color:red'></i></a>
+					<!-- 찜해제 버튼을 누르면 CancelMovieLikePro(찜 작업 수행) 매핑 -->
+					<a href="CancelMovieLikePro.mv?member_id=${sessionScope.sId }&movie_idx=${movie.movie_idx}"><i class='fas fa-heart' style='font-size:24px;color:red'></i></a></td>
+<%-- 					<input type="button" value="찜해제" onclick="location.href='CancelMovieLikePro.mv?member_id=${sessionScope.sId }&movie_idx=${movie.movie_idx}'"></td> --%>
 				</tr>
 			</c:forEach>
 				
-
 		</table>
 </body>
 </html>

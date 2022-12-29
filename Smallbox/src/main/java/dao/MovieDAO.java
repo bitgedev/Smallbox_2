@@ -278,6 +278,28 @@ public class MovieDAO {
 		
 		return insertlikeCount;
 	}
+	
+	// 영화 목록 페이지 - 찜 해제 작업 수행
+	public int deleteMovieLike(int movie_idx, String member_id) {
+		int deletelikeCount = 0;
+		
+		try {
+			String sql = "DELETE FROM movie_like WHERE movie_idx = ? AND member_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movie_idx);
+			pstmt.setString(2, member_id);
+			
+			deletelikeCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류! - deleteMovieLike()");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return deletelikeCount;
+	}
 
 	// 마이페이지 찜 목록 - 찜한 영화의 정보 뿌리기
 	public List<MovieBean> selectLikeList(String member_id) {
@@ -322,6 +344,7 @@ public class MovieDAO {
 		
 		return likeList;
 	}
+
 
 	
 }

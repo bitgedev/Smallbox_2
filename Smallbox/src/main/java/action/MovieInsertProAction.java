@@ -32,7 +32,22 @@ public class MovieInsertProAction implements Action {
 			MovieBean movie = new MovieBean();
 			movie.setMovie_title(multi.getParameter("movie_title"));
 			movie.setMovie_grade(multi.getParameter("movie_grade"));
-			movie.setMovie_genre(multi.getParameter("movie_genre"));
+			
+			// 선택된 라디오 버튼을 배열로 받아와서 DB에 저장! 근데 라디오 버튼은 하나만 선택되는데 굳이 배열을 써야하나..?
+			String[] grade = multi.getParameterValues("movie_grade");
+			
+			for(String movie_grade : grade) {
+				movie.setMovie_grade(movie_grade.toString());
+			}
+			
+			// 체크박스를 배열로 받아와서 DB에 저장! .. 근데 마지막 선택한 것만 들어가네..
+			String[] genre = multi.getParameterValues("movie_genre");
+			
+			for(String movie_genre : genre) {
+				movie.setMovie_genre(movie_genre.toString());
+//				System.out.println(genre);
+			}
+			
 			movie.setMovie_open_date(Date.valueOf(multi.getParameter("movie_open_date")));
 			movie.setMovie_runtime(Integer.parseInt(multi.getParameter("movie_runtime")));
 			movie.setMovie_intro(multi.getParameter("movie_intro"));
