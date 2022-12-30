@@ -11,7 +11,7 @@
 		<jsp:include page="top.jsp"></jsp:include>
 	</header>
 	<h1>로그인</h1>
-	<form action="loginPro.jsp" method="post">
+	<form action="MemberLoginPro.sm" method="post">
 	<table border="1">
 			<tr>
 				<th>아이디</th>
@@ -27,7 +27,7 @@
 	</table>
 	
 			<div >
-           		 <a href="find_id_form.jsp">아이디 찾기</a> | <a href="find_pass_form.jsp">비밀번호 찾기</a> | <a href="join_form.jsp">회원가입</a>
+           		 <a href="FindIdForm.sm">아이디 찾기</a> | <a href="FindPasswdForm.sm">비밀번호 찾기</a> | <a href="MemberJoinForm.sm">회원가입</a>
         	</div>
 	
 	

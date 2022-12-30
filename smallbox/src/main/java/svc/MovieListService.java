@@ -3,16 +3,17 @@ package svc;
 import java.sql.Connection;
 import java.util.List;
 
-import DB.JdbcUtil;
 import dao.MovieDAO;
+import db.JdbcUtil;
 import vo.MovieBean;
 
 public class MovieListService {
 
 	public List<MovieBean> getMovieList() {
-//		System.out.println("movie list service");
+		System.out.println("service : MovieListService");
 		
 		List<MovieBean> movieList = null;
+		
 		//-------------------공통------------------------------
 		Connection con = JdbcUtil.getConnection();
 		MovieDAO dao = MovieDAO.getInstance();
@@ -21,12 +22,12 @@ public class MovieListService {
 		
 		movieList = dao.selectMovieList();
 		
-		
 		//-------------------공통------------------------------
 		JdbcUtil.close(con);
 		//-----------------------------------------------------
-//		System.out.println("service 의 movie list : " + movieList);
+		
 		return movieList;
-	}
+	} // ~~~~public List<MovieBean> getMovieList end~~~~
 
-}
+	
+} // ~~~~public class MovieListService end~~~~

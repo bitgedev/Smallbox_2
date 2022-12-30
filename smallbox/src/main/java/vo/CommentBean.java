@@ -3,25 +3,36 @@ package vo;
 import java.sql.Date;
 
 public class CommentBean {
-//	comment_idx INT PRIMARY KEY,
-//   	member_id VARCHAR(20),
-//  	comment_star INT,
-//   	comment_content VARCHAR(2000),
-//  	comment_date DATE,
-//	movie_idx INT,
 
+/*
+CREATE TABLE comment (
+comment_idx INT PRIMARY KEY, 
+movie_idx INT, 
+member_id VARCHAR(20), 
+comment_star INT, 
+comment_content VARCHAR(2000), 
+comment_date DATE
+);*/	
+	
 	private int comment_idx;
-	private String member_id; 
-	private int comment_star;
-	private String comment_content; 
-	private Date comment_date;
 	private int movie_idx;
+	private String member_id;
+	private int comment_star;
+	private String comment_content;
+	private Date comment_date;
+	
 	
 	public int getComment_idx() {
 		return comment_idx;
 	}
 	public void setComment_idx(int comment_idx) {
 		this.comment_idx = comment_idx;
+	}
+	public int getMovie_idx() {
+		return movie_idx;
+	}
+	public void setMovie_idx(int movie_idx) {
+		this.movie_idx = movie_idx;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -47,17 +58,12 @@ public class CommentBean {
 	public void setComment_date(Date comment_date) {
 		this.comment_date = comment_date;
 	}
-	public int getMovie_idx() {
-		return movie_idx;
-	}
-	public void setMovie_idx(int movie_idx) {
-		this.movie_idx = movie_idx;
-	}
+	
 	@Override
 	public String toString() {
-		return "CommentBean [comment_idx=" + comment_idx + ", member_id=" + member_id + ", comment_star=" + comment_star
-				+ ", comment_content=" + comment_content + ", comment_date=" + comment_date + ", movie_idx=" + movie_idx
-				+ "]";
+		return "CommentBean [comment_idx=" + comment_idx + ", movie_idx=" + movie_idx + ", member_id=" + member_id
+				+ ", comment_star=" + comment_star + ", comment_content=" + comment_content + ", comment_date="
+				+ comment_date + "]";
 	}
 	
 	

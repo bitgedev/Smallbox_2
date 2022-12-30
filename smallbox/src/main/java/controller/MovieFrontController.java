@@ -10,42 +10,67 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CommentWriteProAction;
 import action.MovieDetailAction;
 import action.MovieListAction;
-import action.ReviewWriteProAction;
+import action.ReserveSelectProAction;
+import action.ReserveSelectSeatProAction;
+import action.ReserveViewListAction;
 import vo.ActionForward;
 
+//comment도 일단 여기서 처리하고있는데 분리 할까요?????
 @WebServlet("*.mv")
 public class MovieFrontController extends HttpServlet {
-	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Movie Front Controller");
+		
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
+		Action action = null;
+		ActionForward forward = null;
 		
-		Action action = null; 
-		ActionForward forward = null; 
-		
-		// ----------------------------------------------------------------------
 		if(command.equals("/MovieList.mv")) {
-//			System.out.println("controller : movie list");
+			System.out.println("controller : MovieList.mv");
 			
  			action = new MovieListAction();
 			forward = action.execute(request, response);
-			
-		} else if(command.equals("/MovieDetail.mv")) {
-//			System.out.println("controller : movie Detail");
+		
+		} else if (command.equals("/MovieDetail.mv")) {
+			System.out.println("controller : MovieList.mv");
 			
 			action = new MovieDetailAction();
 			forward = action.execute(request, response);
+		
+		} else if (command.equals("/CommentWritePro.mv")) {
+			System.out.println("controller : CommentWritePro.mv");
 			
-		} else if(command.equals("/ReviewWritePro.mv")) {
-			System.out.println("controller : reviewWritePro");
-			
-			action = new ReviewWriteProAction();
+			action = new CommentWriteProAction();
 			forward = action.execute(request, response);
+		
+		} else if(command.equals("/Reserve.mv")) {
+			System.out.println("예매 영화 목록 요청");
 			
+			action = new ReserveViewListAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/ReserveSelectPro.mv")) {
+			System.out.println("예매 영화와 날짜 선택시 해당되는 시간 조회 요청");
+			
+			action = new ReserveSelectProAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("/ReserveSelectSeat.mv")) { // 좌석 선택
+			forward = new ActionForward();
+			forward.setPath("reserve/reserve_seat.jsp");
+			forward.setRedirect(false); 
+		
+		} else if(command.equals("/ReserveSelectSeatPro.mv")) {
+			System.out.println("controler : ReserveSelectSeat.mv");
+			
+			action = new ReserveSelectSeatProAction();
+			forward = action.execute(request, response);
 		}
+		
+		
+		
 		
 		// ----------------------------------------------------------------------
 		// ActionForward 객체 내용에 따라 각각 다른 방식의 포워딩 작업 수행(공통)
@@ -62,21 +87,13 @@ public class MovieFrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
-
-		
-		
-		
-		
-	
 	} // ~~~~do Process end~~~~
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

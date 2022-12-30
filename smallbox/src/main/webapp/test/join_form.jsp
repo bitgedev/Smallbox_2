@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <link href="css/default.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 	<header>
 		<jsp:include page="top.jsp"></jsp:include>
 	</header>
 	<h1>회원 가입</h1>
-	<form action="joinPro.jsp" method="post" name="joinForm">
+	<form action="MemberJoinPro.sm" method="post" name="joinForm">
 		<table border="1">
 			<tr>
 				<td>이름</td>

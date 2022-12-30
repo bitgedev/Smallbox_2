@@ -1,7 +1,7 @@
-<%@page import="Member.MemberDTO"%>
-<%@page import="Member.CouponDTO"%>
+<%@page import="vo.CouponDTO"%>
+<%@page import="dao.CouponDAO"%>
+<%@page import="vo.MemberBean"%>
 <%@page import="java.util.List"%>
-<%@page import="Member.CouponDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 		</tr>
 		
 		<% 
-		MemberDTO member = new MemberDTO();
+		MemberBean member = new MemberBean();
 		member.setMember_id((String)session.getAttribute("sId"));
 		
 		CouponDAO dao = new CouponDAO();
