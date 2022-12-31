@@ -11,7 +11,7 @@
 	<%
 		String star = request.getParameter("star");
 	
-		out.println("your seat : " + star+"<br>");
+		out.println("좌석 번호 : " + star+"<br>");
 		
 		String h = star.substring(0, 1);
 		String w = star.substring(1);

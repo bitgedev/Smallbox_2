@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.sql.Time;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,24 +34,18 @@ public class ReserveSelectProAction implements Action {
 			
 //		request.setAttribute("theaterList", theaterList);
 			System.out.println(theaterList);
-			List<Time> timeList = theaterList.stream().map(TheaterBean::getTheater_time).collect(Collectors.toList());
-			List<Integer> seat_cntList = theaterList.stream().map(TheaterBean::getTheater_seat_cnt).collect(Collectors.toList());
 			
 			response.setContentType("text/html; charset=UTF-8");
 			
 			PrintWriter out = response.getWriter();
 //			out.println("<script>");
-			out.println("<h3>" + movie_title + "</h3>");
-			out.println("<input type='hidden' name='movie_title' value='" + movie_title + "'>");
-			out.println("<h3>" + reserve_date + "</h3>");
-			out.println("<input type='hidden' name='reserved_date' value='" + reserve_date + "'>");
-			for(int i = 0; i < timeList.size(); i++) {
+			out.println("<h3>영화 제목: " + movie_title + "</h3>");
+			out.println("<h3>선택하신 날짜: " + reserve_date + "</h3>");
+			for(int i = 0; i < theaterList.size(); i++) {
 				
-				out.print("<input type='button' class='timeButton' value='" + timeList.get(i)+ "'onclick='change_btn(event)'>");
-				out.println("<b> 남은 좌석 수: " + seat_cntList.get(i)+ "</b><br>");
+					out.println("<h3>시간값: " + theaterList.get(i) + "</h3>");
 					
 			}
-			out.println(" <input type='hidden' name='selected_time' value=''>");
 //			out.println("</script>");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

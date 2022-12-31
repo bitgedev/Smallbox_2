@@ -9,7 +9,8 @@ public class TheaterBean {
 	private String theater_title;
 	private Date theater_date;
 	private Time theater_time;
-	private int theater_seat_cnt;
+	private int theater_seat;
+	private int theater_reserved;
 	
 	public int getTheater_idx() {
 		return theater_idx;
@@ -35,17 +36,24 @@ public class TheaterBean {
 	public void setTheater_time(Time theater_time) {
 		this.theater_time = theater_time;
 	}
-	public int getTheater_seat_cnt() {
-		return theater_seat_cnt;
+	public int getTheater_reserved() {
+		return theater_reserved;
 	}
-	public void setTheater_seat_cnt(int theater_seat_cnt) {
-		this.theater_seat_cnt = theater_seat_cnt;
+	public void setTheater_reserved(int theater_reserved) {
+		this.theater_reserved = theater_reserved;
+	}
+	public int getTheater_seat() {
+		return theater_seat;
+	}
+	public void setTheater_seat(int theater_seat) {
+		this.theater_seat = theater_seat;
 	}
 	
 	@Override
 	public String toString() {
-		return "TheaterBean [theater_idx=" + theater_idx + ", theater_title=" + theater_title + ", theater_date="
-				+ theater_date + ", theater_time=" + theater_time + ", theater_seat_cnt=" + theater_seat_cnt + "]";
+		return "TheaterDTO [theater_idx=" + theater_idx + ", theater_title=" + theater_title + ", theater_date="
+				+ theater_date + ", theater_time=" + theater_time + ", theater_reserved=" + theater_reserved
+				+ ", theater_seat=" + theater_seat + "]";
 	}
 	
 	

@@ -15,11 +15,11 @@
 	<table border="1">
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="member_id" required="required" value="${sessionScope.sId }"></td>
+				<td><input type="text" name="member_id" required="required"></td>
 			</tr>	
 			<tr>
 				<th>패스워드</th>
-				<td><input type="password" name="member_passwd" required="required" value="member_passwd"></td>
+				<td><input type="password" name="member_passwd" required="required"></td>
 			</tr>	
 			<tr>
 				<td colspan="1" align="center"><input type="submit" value="로그인"></td>

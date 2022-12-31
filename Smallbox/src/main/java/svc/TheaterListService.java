@@ -3,7 +3,7 @@ package svc;
 import java.sql.Connection;
 import java.util.List;
 
-import dao.TheaterDAO;
+import dao.TheaterDAObeforeUpdate;
 import db.JdbcUtil;
 import vo.TheaterBean;
 
@@ -14,7 +14,7 @@ public class TheaterListService {
 		List<TheaterBean> theaterList = null;
 		//-------------------공통------------------------------
 		Connection con = JdbcUtil.getConnection();
-		TheaterDAO dao = TheaterDAO.getInstance();
+		TheaterDAObeforeUpdate dao = TheaterDAObeforeUpdate.getInstance();
 		dao.setConnection(con);
 		//-----------------------------------------------------
 		
