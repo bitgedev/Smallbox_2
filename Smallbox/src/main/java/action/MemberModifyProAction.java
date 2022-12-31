@@ -1,13 +1,11 @@
 package action;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MemberDAO;
 import svc.MemberModifyService;
 import vo.ActionForward;
 import vo.MemberBean;
@@ -24,19 +22,11 @@ public class MemberModifyProAction implements Action {
 		member.setMember_id(request.getParameter("member_id"));
 		member.setMember_email(request.getParameter("member_email"));
 		member.setMember_phone(request.getParameter("member_phone"));
-		String oldPasswd = request.getParameter("oldPasswd");
 		String newPasswd = request.getParameter("newPasswd");
+		String oldPasswd = request.getParameter("oldPasswd");
 		String newPasswdCheck = request.getParameter("newPasswdCheck");
 		
-//		// -------------------------------------------------------------------------------
-//		// 패스워드 암호화(해싱) 기능 추가
-//		// encrypt.MyMessageDigest 클래스 인스턴스 생성
-//		MyMessageDigest md = new MyMessageDigest("SHA-256");
-//		// MyMessageDigest 객체의 hashing() 메서드를 호출하여 암호화 수행
-//		// => 리턴되는 암호문(해싱된 패스워드)를 저장
-//		member.setMember_passwd(md.hashing(request.getParameter(newPasswdCheck)));
-//		// -------------------------------------------------------------------------------
-				
+		
 		if(newPasswd.equals(newPasswdCheck)) {
 			response.setContentType("text/html; charset=UTF-8");
 			member.setMember_passwd(newPasswdCheck);

@@ -2,6 +2,8 @@ package action;
 
 import java.io.IOException;
 
+
+
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.List;
@@ -20,6 +22,7 @@ public class MemberListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		ActionForward forward = null;
 		
 		// 세션아이디가 어드민이 아닐 경우 자바스크립트를 사용하여 돌려보내기
@@ -42,7 +45,7 @@ public class MemberListAction implements Action {
 				
 				// member / member_list.jsp 포워딩
 				forward = new ActionForward();
-				forward.setPath("member/admin_member.jsp");
+				forward.setPath("test/admin_member.jsp");
 				forward.setRedirect(false);
 				
 			}

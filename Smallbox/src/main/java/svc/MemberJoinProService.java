@@ -2,6 +2,7 @@ package svc;
 
 import java.sql.Connection;
 
+
 import dao.MemberDAO;
 import db.JdbcUtil;
 import vo.MemberBean;
@@ -19,8 +20,9 @@ public class MemberJoinProService {
 			
 			dao.setConnection(con);
 			
-			int insertCount = dao.insertMember(member);
 			
+			int insertCount = dao.insertMember(member);
+//			System.out.println(insertCount);
 			if(insertCount > 0) {
 				JdbcUtil.commit(con);
 				

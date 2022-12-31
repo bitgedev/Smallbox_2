@@ -3,17 +3,26 @@ package vo;
 import java.sql.Date;
 
 public class MovieBean {
-
+//	movie_idx INT PRIMARY KEY, 
+//	movie_title VARCHAR(20), 
+//	movie_grade VARCHAR(20), 
+//	movie_genre VARCHAR(20),
+//	movie_open_date DATE, 
+//	movie_runtime INT, 
+//	movie_intro VARCHAR(2000),
+//	movie_actors VARCHAR(500),
+//	movie_picture VARCHAR(100),
+//	movie_viewer INT DEFAULT 0);
+	
 	private int movie_idx;
 	private String movie_title;
 	private String movie_grade;
 	private String movie_genre;
 	private Date movie_open_date;
 	private int movie_runtime;
-	private String movie_intro; 
+	private String movie_intro;
 	private String movie_actors;
 	private String movie_picture;
-	private String movie_real_picture;
 	private int movie_viewer;
 	
 	public int getMovie_idx() {
@@ -70,12 +79,6 @@ public class MovieBean {
 	public void setMovie_picture(String movie_picture) {
 		this.movie_picture = movie_picture;
 	}
-	public String getMovie_real_picture() {
-		return movie_real_picture;
-	}
-	public void setMovie_real_picture(String movie_real_picture) {
-		this.movie_real_picture = movie_real_picture;
-	}
 	public int getMovie_viewer() {
 		return movie_viewer;
 	}
@@ -88,7 +91,7 @@ public class MovieBean {
 		return "MovieBean [movie_idx=" + movie_idx + ", movie_title=" + movie_title + ", movie_grade=" + movie_grade
 				+ ", movie_genre=" + movie_genre + ", movie_open_date=" + movie_open_date + ", movie_runtime="
 				+ movie_runtime + ", movie_intro=" + movie_intro + ", movie_actors=" + movie_actors + ", movie_picture="
-				+ movie_picture + ", movie_real_picture=" + movie_real_picture + ", movie_viewer=" + movie_viewer + "]";
+				+ movie_picture + ", movie_viewer=" + movie_viewer + "]";
 	}
 	
 	

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import encrypt.MyMessageDigest;
 import svc.MemberLoginProService;
 import vo.ActionForward;
 import vo.MemberBean;
@@ -22,7 +23,16 @@ public class MemberLoginProAction implements Action {
 			
 			MemberBean member = new MemberBean();
 			member.setMember_id(request.getParameter("member_id"));
-			member.setMember_passwd(request.getParameter("member_passwd"));
+//			member.setMember_passwd(request.getParameter("member_passwd"));
+			
+			// -------------------------------------------------------------------------------
+			// 패스워드 암호화(해싱) 기능 추가
+			// encrypt.MyMessageDigest 클래스 인스턴스 생성
+			MyMessageDigest md = new MyMessageDigest("SHA-256");
+			// MyMessageDigest 객체의 hashing() 메서드를 호출하여 암호화 수행
+			// => 리턴되는 암호문(해싱된 패스워드)를 저장
+			member.setMember_passwd(md.hashing(request.getParameter("member_passwd")));
+			// -------------------------------------------------------------------------------
 			
 			// MemberLoginProService - loginMember()
 			// => 파라미터 : MemberBean 객체    리턴타입 : int(loginResult)
