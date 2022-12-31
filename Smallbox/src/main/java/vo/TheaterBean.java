@@ -2,15 +2,23 @@ package vo;
 
 import java.sql.Date;
 import java.sql.Time;
-
+/*
+CREATE TABLE theater (
+	theater_idx INT PRIMARY KEY, 
+	theater_title VARCHAR(50), 
+	theater_date DATE, 
+	theater_time TIME,
+	theater_reserved INT default 0,
+	theater_seat INT
+	);
+*/
 public class TheaterBean {
-	
 	private int theater_idx;
 	private String theater_title;
 	private Date theater_date;
 	private Time theater_time;
-	private int theater_seat;
 	private int theater_reserved;
+	private int theater_seat;
 	
 	public int getTheater_idx() {
 		return theater_idx;
@@ -48,13 +56,10 @@ public class TheaterBean {
 	public void setTheater_seat(int theater_seat) {
 		this.theater_seat = theater_seat;
 	}
-	
 	@Override
 	public String toString() {
-		return "TheaterDTO [theater_idx=" + theater_idx + ", theater_title=" + theater_title + ", theater_date="
+		return "theater [theater_idx=" + theater_idx + ", theater_title=" + theater_title + ", theater_date="
 				+ theater_date + ", theater_time=" + theater_time + ", theater_reserved=" + theater_reserved
 				+ ", theater_seat=" + theater_seat + "]";
 	}
-	
-	
 }

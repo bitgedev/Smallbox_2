@@ -2,8 +2,6 @@ package dao;
 
 import java.sql.Connection;
 
-
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +47,7 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				member_idx = rs.getInt(1) +1;
-				sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?,now(), ?)";
+				sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?,now(), ?, ?)";
 				pstmt2 = con.prepareStatement(sql);
 				pstmt2.setInt(1, member_idx);
 				pstmt2.setString(2, member.getMember_id());
@@ -58,6 +56,7 @@ public class MemberDAO {
 				pstmt2.setString(5, member.getMember_email());
 				pstmt2.setString(6, member.getMember_phone());
 				pstmt2.setDate(7, member.getMember_birth_date());
+				pstmt2.setString(8, member.getMember_point());
 				insertCount = pstmt2.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -132,6 +131,7 @@ public class MemberDAO {
 				member.setMember_phone(rs.getString("member_phone"));
 				member.setMember_join_date(rs.getDate("member_join_date"));
 				member.setMember_birth_date(rs.getDate("member_birth_date"));
+				member.setMember_point(rs.getString("member_point"));
 				
 				//List 객체에 MemberBean 객체 추가
 				memberList.add(member);
@@ -146,89 +146,5 @@ public class MemberDAO {
 		
 		return memberList;
 	}
-	
-	// 회원 정보 수정 updateMember()
-	public boolean updateMember(MemberBean member, boolean isChangePass) {
-		int updateMember = 0;
-		
-		
-		try {
-			// 패스워드 변경 여부에 따른 각 SQL 구문 작성
-			String sql = "";
-			if(isChangePass) { //패스워드 변경시
-				sql = "UPDATE member "
-								+ "SET "
-										+ " member_name=?"
-										+ " ,member_id=?,"
-										+ " member_passwd=?,"
-										+ " member_email=?,"
-										+ " member_phone=?"
-									+ "WHERE member_id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, member.getMember_name());
-				pstmt.setString(2, member.getMember_id());
-				pstmt.setString(3, member.getMember_passwd());
-				pstmt.setString(4, member.getMember_email());
-				pstmt.setString(5, member.getMember_phone());
-				pstmt.setString(6, member.getMember_id());
-				
-				isChangePass = true;
-			} else { //패스워드 미변경시
-				sql = "UPDATE member "
-								+ "SET "
-									+ " member_name=?,"
-									+ " member_id=?,"
-									+ " member_email=?,"
-									+ " member_phone=?"
-								+ "WHERE member_id=?";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, member.getMember_name());
-				pstmt.setString(2, member.getMember_id());
-				pstmt.setString(3, member.getMember_email());
-				pstmt.setString(4, member.getMember_phone());
-				pstmt.setString(5, member.getMember_id());
-			}
-			
-			updateMember = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("sql 구문 오류 - updateMember()");
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(pstmt);
-		}
-		return isChangePass;
-			
-	} // 회원 정보 수정 끝
-	
-	public MemberBean getMemebrInfo(String sId) {
-		MemberBean member = null;
-		
-		try {
-			String sql = "SELECT * FROM member WHERE member_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, sId);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				member = new MemberBean();
-				member.setMember_name(rs.getString("member_name"));
-				member.setMember_id(rs.getString("member_id"));
-				member.setMember_passwd(rs.getString("member_passwd"));
-				member.setMember_email(rs.getString("member_email"));
-				member.setMember_phone(rs.getString("member_phone"));
-				System.out.println(member);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		
-		return member;
-	} // 회원 목록 끝
-		
-		
-}
+
+	}

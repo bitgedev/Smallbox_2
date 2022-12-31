@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberListAction;
-import action.NoticeDeatilAction;
-import action.NoticeDeleteProAction;
-import action.NoticeListAction;
-import action.NoticeWriteProAction;
+import action.AdminTheaterDeleteProAction;
+import action.AdminTheaterDetailAction;
+import action.AdminTheaterListAction;
+import action.AdminTheaterModifyFormAction;
+import action.AdminTheaterModifyProAction;
+import action.AdminTheaterInsertProAction;
 import vo.ActionForward;
 
 @WebServlet("*.ad")
@@ -23,92 +24,73 @@ public class AdminFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("AdminFrontController");
 		
+		// POST 방식 요청에 대한 한글 인코딩 처리
 		request.setCharacterEncoding("UTF-8");
+				
+		// 서블릿 주소 추출
 		String command = request.getServletPath();
-		System.out.println("command: " + command);
+		System.out.println("command : " + command);
 		
+		// 공통으로 사용할 변수 선언
 		Action action = null;
-		ActionForward forward = null;
-		
-		if(command.equals("/Admin_main.ad")) {
-			System.out.println("관리자 메인페이지");
-			
+		ActionForward forward = null; // 포워딩 정보를 저장할 ActionForward 타입 변수
+	
+		// ----------------------------------------------------------------------
+		if(command.equals("/Admin.ad")) {
 			forward = new ActionForward();
 			forward.setPath("admin/admin.jsp");
-			forward.setRedirect(false);
+			forward.setRedirect(false); // 생략도 가능
+		} else if(command.equals("/AdminTheaterInsertForm.ad")) {
+			System.out.println("상영 일정 등록 폼!");
+			forward = new ActionForward();
+			forward.setPath("/admin/admin_theater_insert.jsp");
+			forward.setRedirect(false); // 생략도 가능
+		} else if(command.equals("/AdminTheaterInsertPro.ad")) {
+			System.out.println("상영 일정 등록 작업!");
+			action = new AdminTheaterInsertProAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/AdminTheaterList.ad")) {
+			System.out.println("상영 일정 목록!");
+			action = new AdminTheaterListAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/AdminTheaterDetail.ad")) {
+			System.out.println("상영 일정 상세정보!");
+			action = new AdminTheaterDetailAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/AdminTheaterModifyForm.ad")) {
+			System.out.println("상영 일정 수정 폼!");
+			forward = new ActionForward();
+			action = new AdminTheaterModifyFormAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/AdminTheaterModifyPro.ad")) {
+			System.out.println("상영 일정 수정 작업!");
+			action = new AdminTheaterModifyProAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/AdminTheaterDeletePro.ad")) {
+			System.out.println("상영 일정 삭제 작업!");
+			action = new AdminTheaterDeleteProAction();
+			forward = action.execute(request, response);
+		}
 		
-		} else if(command.equals("/Admin_notice_write.ad")) {
-			System.out.println("관리자 공지 등록 페이지");
-			
-			// Dispatcher 방식으로 포워딩 = /Admin_notice_write.ad 주소가 유지됨
-			forward = new ActionForward();
-			forward.setPath("admin/admin_notice_insert.jsp");
-			forward.setRedirect(false);	
-			
-		} else if(command.equals("/Admin_notice_writePro.ad")) {
-			// 글쓰기 폼 출력 -> 내용 입력 받은 후 글쓰기 버튼 클릭시 
-			// 글쓰기 작업 요청을 위한 서블릿 주소 요청
-			System.out.println("관리자 공지 등록 요청");
-			
-			action = new NoticeWriteProAction();
-			forward = action.execute(request, response);
-		} else if(command.equals("/Notice_list.ad")) {
-			System.out.println("공지 목록 페이지 요청");
-			action = new NoticeListAction();
-			forward = action.execute(request, response);
-			
-		} else if(command.equals("/NoticeDetail.ad")) {
-			System.out.println("공지 상세 목록 페이지 요청");
-			action = new NoticeDeatilAction();
-			forward = action.execute(request, response);
-			
-		} else if(command.equals("/NoticeDeleteForm.ad")) {
-			forward = new ActionForward();
-			forward.setPath("admin/notice_delete.jsp");
-			forward.setRedirect(false);
-			
-		} else if(command.equals("/NoticeDeletePro.ad")) {
-			System.out.println("공지 삭제 요청");
-			action = new NoticeDeleteProAction();
-			forward = action.execute(request, response);
-			
-		} else if (command.equals("/MemberList.ad")) {
-			action = new MemberListAction();
-			forward = action.execute(request, response);
-			
-		} else if (command.equals("/MovieInsert.ad")) {
-			forward = new ActionForward();
-			forward.setPath("test/admin_movie_insert.jsp");
-			forward.setRedirect(false); // 생략 가능
-			
-		} else if (command.equals("/TheaterInsert.ad")) {
-			forward = new ActionForward();
-			forward.setPath("test/admin_theater_insert.jsp");
-			forward.setRedirect(false); // 생략 가능
-			
-		} else if (command.equals("/CouponInsert.ad")) {
-			forward = new ActionForward();
-			forward.setPath("test/admin_coupon_insert.jsp");
-			forward.setRedirect(false); // 생략 가능
-			
-		} else if (command.equals("/CouponeInsertPro.ad")) {
-			action = new MemberListAction();
-			forward = action.execute(request, response);
-			
-		} 
 		
-		// 얘 없으면 안 뜸 안 넣으면 빡댁가리
-		if(forward != null) {
-			if(forward.isRedirect()) {
-				response.sendRedirect(forward.getPath());
-			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
+		// ----------------------------------------------------------------------
+		// ActionForward 객체 내용에 따라 각각 다른 방식의 포워딩 작업 수행(공통)
+		// 1. ActionForward 객체가 null 이 아닐 경우 판별
+			if(forward != null) {
+				// 2. ActionForward 객체에 저장된 포워딩 방식 판별
+				if(forward.isRedirect()) { // Redirect 방식
+					// Redirect 방식의 포워딩 작업 수행
+					// => 포워딩 경로는 ActionForward 객체의 getPath() 메서드 활용
+					response.sendRedirect(forward.getPath());
+				} else { // Dispatch 방식
+					// Dispatch 방식의 포워딩 작업 수행
+					RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+					dispatcher.forward(request, response);
+				}
 			}
-		}	
-		
-		
-	} // doProcess() 메서드 끝
+			
+		} // doProcess() 메서드 끝
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
@@ -118,4 +100,3 @@ public class AdminFrontController extends HttpServlet {
 	}
 
 }
-		
